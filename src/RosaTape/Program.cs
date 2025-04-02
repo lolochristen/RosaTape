@@ -38,6 +38,11 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 })
+.WithOpenApi(operation =>
+{
+    operation.Description = "The weather";
+    return operation;
+})
 .WithName("GetWeatherForecast");
 
 app.Run();

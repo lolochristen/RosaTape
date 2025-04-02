@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -21,6 +22,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
 var summaries = new[]
 {
     "Freezing" + hash.ComputeHash(Encoding.UTF8.GetBytes("Hallo")).ToString(), "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -28,6 +30,11 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
+
+    Process proc = new Process();
+    proc.StartInfo.FileName = "path/to/executable";
+    proc.StartInfo.EnvironmentVariables.Add("TEST", "ASD"); // Noncompliant        proc.Start();
+
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (

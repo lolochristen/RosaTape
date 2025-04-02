@@ -1,0 +1,6 @@
+@RosaTape_HostAddress = http://localhost:5120
+
+GET {{RosaTape_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
